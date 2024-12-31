@@ -7,6 +7,8 @@ export default function Gallery(){
 			<ClassicCars />
 			<ClassicCars />
 			<ClassicCars />
+			<ClassicCars />
+			<ClassicCars />
 		</section>
 	)
 }
