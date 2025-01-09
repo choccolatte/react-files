@@ -5,7 +5,12 @@ export default function Board(){
 	const [xIsNext, setXIsNext] = useState(true); //Each time a player moves, xIsNext (a boolean) will be flipped to determine which player goes next and the game’s state will be saved. 
 
 	function handleClick(i){
-		const nextSquares=squares.slice(); //The handleClick function creates a copy of the squares array (nextSquares) with the JavaScript slice() Array method. Then, handleClick updates the nextSquares array to add X to the first ([0] index) square.
+		
+		if (square[i] || calculateWinner(square)) {
+			return;
+		}
+
+		const nextSquares=square.slice(); //The handleClick function creates a copy of the squares array (nextSquares) with the JavaScript slice() Array method. Then, handleClick updates the nextSquares array to add X to the first ([0] index) square.
 		
 		if (xIsNext){ 
 			nextSquares[i] = 'X'
@@ -17,6 +22,17 @@ export default function Board(){
 
 		setXIsNext(!xIsNext)
 	}
+
+
+	// calculating winning status - 
+	const winner = calculateWinner(square)
+	let status;
+	if (winner){
+		status = 'Winner: ' + winner
+	} else {
+		status = 'Next player: ' + (xIsNext ? 'X' : 'O')
+	}
+	
 
 	return (
 		<>
@@ -48,3 +64,26 @@ function Square(value, onSquareClick){
 	{value}
 	</button>
 }
+
+
+// calculating winner - 
+
+function calculateWinner(squares) {
+	const lines = [
+	  [0, 1, 2],
+	  [3, 4, 5],
+	  [6, 7, 8],
+	  [0, 3, 6],
+	  [1, 4, 7],
+	  [2, 5, 8],
+	  [0, 4, 8],
+	  [2, 4, 6]
+	];
+	for (let i = 0; i < lines.length; i++) {
+	  const [a, b, c] = lines[i];
+	  if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
+		return squares[a];
+	  }
+	}
+	return null;
+  }
