@@ -14,7 +14,16 @@
 <body>
     <div id="container"></div>
     <script type="text/babel">
+
+        //var strikes = 0 //counts the lightning strikes
+
         var LightningCounter = React.createClass({
+            getInitialState:function(){ //counts initial state
+            return {
+                strikes:0
+            }
+        },
+
             render: function(){
                 return (
                     <h1>Hello!</h1>
