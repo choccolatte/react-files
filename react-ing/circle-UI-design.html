@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>React! React! React!</title>
+    <script src="https://unpkg.com/react@15.3.2/dist/react.js"></script>
+    <script src="https://unpkg.com/react-dom@15.3.2/dist/react-dom.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min
+   .js"></script>
+    <style>
+   #container {
+   padding: 50px;
+   background-color: #FFF;
+      }
+    </style>
+</head>
+  
+  
+<body>
+    <div id="container"></div>
+    
+    <script type="text/babel">
+
+        function showCircle() {
+        var colors = ["#393E41", "#E94F37", "#1C89BF", "#A1D363", "#85FFC7", "#297373", "#FF8552", "#A40E4C"];
+
+        var renderData = [];
+
+        for (var i = 0; i < colors.length; i++) 
+        {
+            var color = colors[i];
+            
+            renderData.push(<Circle key={i + color} bgColor={color}/>);
+        }
+
+        
+        var ran = Math.floor(Math.random() * colors.length);
+        
+        // return a Circle with a randomly chosen color
+        return <Circle bgColor={colors[ran]}/>;
+        };
+
+
+        var Circle = React.createClass({ //circle component
+                render: function() {
+        var circleStyle = {
+                    padding: 10,
+                    margin: 20,
+                    display: "inline-block",
+                    backgroundColor: this.props.bgColor,
+                    borderRadius: "50%",
+                    width: 100,
+                    height: 100,
+                    };
+        return (
+                    <div style={circleStyle}>
+                    </div>
+                    );
+                }
+            });
+
+        var destination = document.querySelector("#container");
+        
+        var theCircle = <Circle bgColor="#F9C240"/>;
+
+        ReactDOM.render( //displaying our component
+                <div>
+                    {renderData}
+                </div>,
+                destination
+            );
+    </script>
+   </body>
+</html>
