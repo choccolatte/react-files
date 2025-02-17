@@ -3,10 +3,11 @@ function Car(props){
 }
 
 function Garage(){
+    const carName = 'Toyota' // defining the variable here
     return(
         <>
             <h1>The car in my garage!</h1>
-            <Car brand='Toyota' />
+            <Car carName='Toyota' /> // passing defined variable here
         </>
     )
 }
